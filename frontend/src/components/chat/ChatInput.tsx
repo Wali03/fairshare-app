@@ -7,7 +7,7 @@ import { MdSend, MdAttachMoney } from 'react-icons/md';
 
 interface ChatInputProps {
   onSendMessage: (message: string) => void;
-  onAddExpense: () => void;
+  onAddExpense?: () => void;
   disabled?: boolean;
 }
 
@@ -36,17 +36,18 @@ export default function ChatInput({
   return (
     <div className="p-4 border-t bg-white">
       <form onSubmit={handleSubmit} className="flex items-center gap-2">
-        <Button
-          type="button"
-          size="icon"
-          variant="outline"
-          onClick={onAddExpense}
-          disabled={disabled}
-          className="text-green-600 hover:text-green-700 hover:bg-green-50"
-          title="Add expense"
-        >
-          <MdAttachMoney className="h-5 w-5" />
-        </Button>
+      <Button
+        type="button"
+        size="icon"
+        variant="outline"
+        onClick={onAddExpense}
+        disabled={disabled || !onAddExpense}
+        className="text-green-600 hover:text-green-700 hover:bg-green-50"
+        title="Add expense"
+      >
+        <MdAttachMoney className="h-5 w-5" />
+      </Button>
+
         
         <Input
           value={messageText}
