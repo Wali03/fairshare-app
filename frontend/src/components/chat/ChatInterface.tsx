@@ -3,7 +3,7 @@
 import { useState, useEffect, useRef } from 'react';
 import ChatMessage from './ChatMessage';
 import ChatInput from './ChatInput';
-import ExpenseFormModal from '../expenses/ExpenseFormModal';
+import { ExpenseFormModal }from '../expenses/ExpenseFormModal';
 
 export interface Message {
   id: string;
