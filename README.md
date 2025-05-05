@@ -41,7 +41,7 @@ FairShare is a full-stack web application built with **Next.js**, **Node.js**, *
 
 ### 1. Clone the Repository
 
-git clone https://github.com/yourusername/fairshare-app.git
+git clone https://github.com/Wali03/fairshare-app.git
 cd fairshare-app
 
 cd frontend
