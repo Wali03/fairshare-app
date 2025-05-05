@@ -4,18 +4,7 @@ import { useState, useEffect, useRef } from 'react';
 import ChatMessage from './ChatMessage';
 import ChatInput from './ChatInput';
 import { ExpenseFormModal }from '../expenses/ExpenseFormModal';
-
-export interface Message {
-  id: string;
-  content: string;
-  senderName: string;
-  senderImage?: string;
-  senderId: string;
-  timestamp: Date;
-  isExpense?: boolean;
-  amount?: number;
-  description?: string;
-}
+import { Message } from '@/types/chat';
 
 interface ChatInterfaceProps {
   messages: Message[];
@@ -62,7 +51,7 @@ export default function ChatInterface({
             <ChatMessage
               key={message.id}
               message={message}
-              isFromCurrentUser={message.senderId === currentUserId}
+              isCurrentUser={message.senderId === currentUserId}
             />
           ))}
           <div ref={messagesEndRef} />
