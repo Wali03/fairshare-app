@@ -1,19 +1,19 @@
 'use client';
 
-import { useState } from 'react';
+import { useState, Suspense } from 'react';
 import { useSearchParams } from 'next/navigation';
 import AppLayout from '@/components/layout/AppLayout';
 import ExpenseList from '@/components/expenses/ExpenseList';
 import FriendBalances from '@/components/balances/FriendBalances';
 
-export default function ExpensesPage() {
+function ExpensePageContent() {
   const searchParams = useSearchParams();
   const type = searchParams.get('type');
   const id = searchParams.get('id');
   const [activeTab, setActiveTab] = useState<'expenses' | 'balances'>('expenses');
   
   return (
-    <AppLayout>
+    <>
       <div className="mb-4 md:mb-6">
         <h1 className="text-xl md:text-2xl font-bold text-gray-800">My Expenses</h1>
         <p className="text-sm md:text-base text-gray-600">Track your expenses and balances with friends</p>
@@ -49,6 +49,16 @@ export default function ExpensesPage() {
       ) : (
         <FriendBalances className="my-4" />
       )}
+    </>
+  );
+}
+
+export default function ExpensesPage() {
+  return (
+    <AppLayout>
+      <Suspense fallback={<div className="p-4 text-center">Loading expenses...</div>}>
+        <ExpensePageContent />
+      </Suspense>
     </AppLayout>
   );
-} 
+}
